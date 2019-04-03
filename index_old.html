@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app="helloWorld">
+	<head>
+		<title>AngularJS</title>
+		<link rel="stylesheet" href="estilo.css"/>
+		<script type="text/javascript" src="jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="angular.js"></script>
+		<script type="text/javascript" src="motor.js"></script>
+	</head>
+	<body>
+		<div ng-controller="helloWorldCtrl">
+			<p>Usando { {message} }: {{message}}</p>
+			<p>Usando { {name} }:</p>
+			<p>Name: <input type="text" ng-model="name"></p>
+			<h1>Hello {{name}}</h1>
+			<p>Usando ng-bind:</p>
+			<p>Name: <input type="text" ng-model="name02"></p>
+			<p ng-bind="name02"></p>
+		</div>
+	</body>
+</html>
+<!--
+	https://www.youtube.com/watch?v=_y7rKxqPoyg&list=PLQCmSnNFVYnTD5p2fR4EXmtlR6jQJMbPb
+-->

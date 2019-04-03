@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+	<head>
+		<title>AngularJS</title>
+		<link rel="stylesheet" href="estilo.css"/>
+	</head>
+	<body>
+		<div ng-app="">
+			<p>Usando { {name} }:</p>
+			<p>Name: <input type="text" ng-model="name"></p>
+			<h1>Hello {{name}}</h1>
+			<p>Usando ng-bind:</p>
+			<p>Name: <input type="text" ng-model="name02"></p>
+			<p ng-bind="name02"></p>
+		</div>
+		<script type="text/javascript" src="jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="angular.js"></script>
+		<script type="text/javascript" src="motor.js"></script>
+	</body>
+</html>

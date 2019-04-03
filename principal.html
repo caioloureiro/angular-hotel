@@ -1,0 +1,65 @@
+<div>
+	<form ng-submit="add()">
+		<div class="tabela">
+			<div class="tabela-titulo">Novo check in</div>
+			<div class="col50">
+				<div class="tabela-txt">Data/hora de entrada</div>
+				<div class="tabela-input"><input type="text" class="input" id="checkIn" ng-model="newhospede.dataEntrada"/></div>
+				<div class="tabela-txt">Pessoa</div>
+				<div class="tabela-input"><input type="text" class="input" name="nome" placeholder="Nome" ng-model="newhospede.nome"/></div>
+				<div class="tabela-input"><input type="text" class="input" name="documento" placeholder="Documento" ng-model="newhospede.documento"/></div>
+				<div class="tabela-input"><input type="text" class="input" name="telefone" placeholder="Telefone"  ng-model="newhospede.telefone"/></div>
+				<button type="submit" class="btn">Salvar</button>
+			</div>
+			<div class="col50">
+				<div class="tabela-txt">Data/hora de saída</div>
+				<div class="tabela-input"><input type="text" class="input" id="checkOut" name="checkOut" ng-model="newhospede.dataSaida"/></div>
+				<div class="tabela-checkbox"><input type="checkbox" ng-model="newhospede.adicionalVeiculo"> Possui veículo</div>
+			</div>
+		</div>
+	</form>
+	<div class="tabela">
+		<div class="tabela-titulo">Consultas</div>
+		<div class="tabela-txt">Filtrar por:</div>
+		<div class="tabela-input"><input type="text" class="input" name="search" ng-model="search" placeholder="NOME"/></div>
+		<div class="tabela-checkbox"><input type="checkbox" name="presentes" ng-model="presentes"> Pessoas ainda presentes</div>
+		<div class="tabela-checkbox"><input type="checkbox" name="sairam" ng-model="sairam"> Pessoas que já deixaram o hotel</div>
+		<table>
+			<thead>
+				<tr>
+					<th ng-click="order = 'nome'">Nome</th>
+					<th ng-click="order = 'documento'">Documento</th>
+					<th ng-click="order = 'adicionalVeiculo'">Veículo</th>
+					<th ng-click="order = 'dataEntrada'">Check In</th>
+					<th ng-click="order = 'dataSaida'">Check Out</th>
+					<th>Ação</th>
+					<th ng-click="order = 'total'">Valor gasto (R$)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="hospede in hospedes | orderBy:order | filter:search | filter:presentes | filter:sairam">
+					<td>{{hospede.nome}}</td>
+					<td>{{hospede.documento}}</td>
+					<td>{{hospede.adicionalVeiculo}}</td>
+					<td>{{hospede.dataEntrada | date: 'dd/MM/yyyy'}}</td>
+					<td>{{hospede.dataSaida | date: 'dd/MM/yyyy'}}</td>
+					<td style="cursor:pointer" ng-click="remove(hospede)">Remover</td>
+					<td class="money">{{hospede.total | currency: 'R$'}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script>
+	$(".trigger").click(function(){
+		$(".pessoa").toggleClass("on");
+	});
+	$('#checkIn').fdatepicker({
+		format: 'yyyy-mm-ddT14:00:00',
+		language: 'en'
+	});
+	$('#checkOut').fdatepicker({
+		format: 'yyyy-mm-ddT16:30:00',
+		language: 'en'
+	});
+</script>
